@@ -1,34 +1,25 @@
-import React, { useState } from "react";
-import { fetchMovies } from "../../services/api";
-import MovieCard from "../MovieCard/MovieCard";
+import React from "react";
 import "./SearchBar.css";
 
-const SearchBar = () => {
-  const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
+const SearchBar = ({ searchTerm, setSearchTerm }) => {
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
-  const handleSearch = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const results = await fetchMovies(query);
-    setMovies(results);
   };
 
   return (
     <div className="search-bar">
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Buscar por filmes..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={searchTerm}
+          onChange={handleChange}
         />
-        <button type="submit">Buscar</button>
       </form>
-      <div className="movie-results">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
     </div>
   );
 };
