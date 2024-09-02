@@ -36,7 +36,7 @@ const MovieCard = ({ movie }) => {
         <MovieCardTitle>{movie.title}</MovieCardTitle>
         <StarRating movieId={movie.rating} />
 
-        <MovieCardImage src={movie.poster} alt={`${movie.title} Poster`} />
+        <MovieCardImage src={movie.poster_url} alt={`${movie.title} Poster`} />
         <MovieCardFooterStyled>
           <MovieButtonMoreDetails onClick={openModal}>
             Ver detalhes
@@ -66,11 +66,11 @@ const MovieCard = ({ movie }) => {
       >
         <h2>{movie.title}</h2>
         <img
-          src={movie.poster}
+          src={movie.poster_url}
           alt={`${movie.title} Poster`}
           style={{ width: "55%" }}
         />
-        <p>{movie.description}</p>
+        <p>{movie.overview}</p>
         <button onClick={closeModal}>Fechar</button>
       </Modal>
     </>
